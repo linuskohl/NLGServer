@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
+import com.munichresearch.api.Sentence;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -27,12 +28,16 @@ public class NLGResource {
 
     @GET
     @Timed
-    public String buildSentence(@QueryParam("request") Optional<String> request) {
+    public Sentence buildSentence(@QueryParam("request") Optional<String> request) {
+    	String s = "";
+    	if(request.isPresent())
+    		s = request.get();
+    	Sentence sntc = new Sentence(counter.getAndIncrement(), s);
     	try {
     		//TODO:
         } catch (Exception e) {
             log.error("Exception in buildSentence method.", e);
         }
-        return "";
+        return sntc;
     }
 }
