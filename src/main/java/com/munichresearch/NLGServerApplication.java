@@ -1,5 +1,7 @@
 package com.munichresearch;
 
+import com.munichresearch.resources.NLGResource;
+
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -24,6 +26,8 @@ public class NLGServerApplication extends Application<NLGServerConfiguration> {
     public void run(final NLGServerConfiguration configuration,
                     final Environment environment) {
         // TODO: implement application
+        final NLGResource resource = new NLGResource();
+        environment.jersey().register(resource);
     }
 
 }

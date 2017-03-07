@@ -6,5 +6,10 @@ import org.hibernate.validator.constraints.*;
 import javax.validation.constraints.*;
 
 public class NLGServerConfiguration extends Configuration {
-    // TODO: implement service configuration
+	private int maxLength;
+
+    @JsonProperty
+    public int getMaxLength() {
+        return maxLength;
+    }
 }
