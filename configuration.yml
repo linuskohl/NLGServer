@@ -1,7 +1,10 @@
-server:
-  type: simple
-  applicationContextPath: /nlg
-  adminContextPath: /admin
-  connector:
-    type: http
-    port: 8080
+logging:
+  # The default level of all loggers. 
+  # {OFF, ERROR, WARN, INFO, DEBUG, TRACE, ALL}
+  level: DEBUG
+
+  # Console
+  appenders:
+    - type: console
+      threshold: DEBUG
+      target: stderr

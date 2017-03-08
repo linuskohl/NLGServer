@@ -12,17 +12,17 @@ public class Sentence {
         this.content = content;
     }
     
-    @JsonProperty
+    @JsonProperty("id")
     public long getId() {
         return id;
     }
     
-    @JsonProperty
+    @JsonProperty("content")
     public String getContent() {
         return content;
     }
 
-    @JsonProperty
+    @JsonProperty("content")
     public void setContent(String content) {
         this.content = content;
     }

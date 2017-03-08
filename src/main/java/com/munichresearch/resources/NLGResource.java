@@ -3,14 +3,18 @@ package com.munichresearch.resources;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.validation.Valid;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.core.MediaType;
-
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
+import com.munichresearch.api.Request;
 import com.munichresearch.api.Sentence;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -26,12 +30,13 @@ public class NLGResource {
         this.counter = new AtomicLong();
     }
 
-    @GET
-    @Timed
-    public Sentence buildSentence(@QueryParam("request") Optional<String> request) {
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+   // @Timed
+    public Sentence buildSentence(Request data) {
     	String s = "";
-    	if(request.isPresent())
-    		s = request.get();
+        s = data.getNouns().toString();
+    
     	Sentence sntc = new Sentence(counter.getAndIncrement(), s);
     	try {
     		//TODO:
