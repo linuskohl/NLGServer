@@ -3,6 +3,7 @@ package com.munichresearch.resources;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.security.PermitAll;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -16,6 +17,10 @@ import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
 import com.munichresearch.api.Request;
 import com.munichresearch.api.Sentence;
+import com.munichresearch.auth.ApiUser;
+import com.munichresearch.core.NLGenerator;
+
+import io.dropwizard.auth.Auth;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -32,17 +37,17 @@ public class NLGResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @PermitAll
    // @Timed
     public Sentence buildSentence(Request data) {
-    	String s = "";
-        s = data.getNouns().toString();
-    
-    	Sentence sntc = new Sentence(counter.getAndIncrement(), s);
+    	NLGenerator x = new NLGenerator();
+    	
+    	//Sentence sntc = new Sentence(counter.getAndIncrement(), s);
     	try {
-    		//TODO:
+    		
         } catch (Exception e) {
             log.error("Exception in buildSentence method.", e);
         }
-        return sntc;
+        return x.process(data);
     }
 }

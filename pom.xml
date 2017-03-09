@@ -45,6 +45,11 @@
             <artifactId>SimpleNLG</artifactId>
             <version>4.4.8</version>
         </dependency>
+         <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-auth</artifactId>
+            <version>${dropwizard.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

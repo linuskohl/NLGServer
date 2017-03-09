@@ -3,13 +3,15 @@
 $URL = "http://localhost:8080/nlg";
 
 class Request {
-    public $nouns;
+    public $subjects;
     public $verbs;
+    public $objects;
 }
 
 $debugRequest = new Request();
-$debugRequest->nouns = array("Test");
+$debugRequest->subjects = array("This test");
 $debugRequest->verbs = array("work");
+$debugRequest->objects = array();
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $URL);
@@ -17,6 +19,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Ac
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($debugRequest));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_USERPWD, "username:password");
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);

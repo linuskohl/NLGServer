@@ -7,7 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Request {
 	private List<String> verbs;
-	private List<String> nouns;
+	private List<String> subjects;
+	private List<String> objects;
 
 	public Request() {
 	}
@@ -22,13 +23,23 @@ public class Request {
 		this.verbs = Arrays.asList(verbs);
 	}
 
-	@JsonProperty("nouns")
-	public List<String> getNouns() {
-		return this.nouns;
+	@JsonProperty("subjects")
+	public List<String> getSubjects() {
+		return this.subjects;
 	}
 
-	@JsonProperty("nouns")
-	public void setNouns(String[] nouns) {
-		this.nouns = Arrays.asList(nouns);
+	@JsonProperty("subjects")
+	public void setSubject(String[] subjects) {
+		this.subjects = Arrays.asList(subjects);
+	}
+	
+	@JsonProperty("objects")
+	public List<String> getObjects() {
+		return this.objects;
+	}
+
+	@JsonProperty("objects")
+	public void setObject(String[] objects) {
+		this.objects = Arrays.asList(objects);
 	}
 }

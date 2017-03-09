@@ -7,6 +7,9 @@ import simplenlg.phrasespec.*;
 
 import javax.inject.Singleton;
 
+import com.munichresearch.api.Request;
+import com.munichresearch.api.Sentence;
+
 import simplenlg.features.*;
 
 @Singleton
@@ -27,6 +30,16 @@ public class NLGenerator {
     
     public Realiser getRealiser() {
             return this.realiser;
+    }
+    
+    public Sentence process(Request r) {
+        SPhraseSpec p = this.nlgFactory.createClause();
+        p.setSubject(r.getSubjects().get(0));
+        for (String verb : r.getVerbs()) {
+			p.setVerb(verb);
+		}
+        Sentence result = new Sentence((long)1, realiser.realiseSentence(p));
+        return result;
     }
 
 }

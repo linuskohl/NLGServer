@@ -8,3 +8,6 @@ logging:
     - type: console
       threshold: DEBUG
       target: stderr
+
+login: username
+password: password
